@@ -1,15 +1,27 @@
 import { Book } from "./Book";
 
 export class Copy {
-  book: Book;
-  isAvailable: boolean;
+  private _book: Book;
+  private _isAvailable: boolean;
 
   constructor(book: Book) {
-    this.book = book;
-    this.isAvailable = true;
+    this._book = book;
+    this._isAvailable = true;
   }
 
   isCopyAvailable(): boolean {
-    return this.isAvailable;
+    return this._isAvailable;
+  }
+
+  get book(): Book {
+    return this._book;
+  }
+
+  get checkout(): boolean {
+    return this._isAvailable;
+  }
+
+  set checkout(value: boolean) {
+    this._isAvailable = value;
   }
 }

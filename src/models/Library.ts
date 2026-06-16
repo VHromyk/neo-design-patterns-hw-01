@@ -4,39 +4,55 @@ import { Copy } from "./Copy";
 import { Reader } from "./Reader";
 
 export class Library {
-  books: AbstractBook[];
-  authors: Author[];
-  copies: Copy[];
-  readers: Reader[];
+  private _books: AbstractBook[];
+  private _authors: Author[];
+  private _copies: Copy[];
+  private _readers: Reader[];
 
   constructor() {
-    this.books = [];
-    this.authors = [];
-    this.copies = [];
-    this.readers = [];
+    this._books = [];
+    this._authors = [];
+    this._copies = [];
+    this._readers = [];
   }
 
   addBook(book: AbstractBook): void {
-    this.books.push(book);
+    this._books.push(book);
   }
 
   addAuthor(author: Author): void {
-    this.authors.push(author);
+    this._authors.push(author);
   }
 
   addCopy(copy: Copy): void {
-    this.copies.push(copy);
+    this._copies.push(copy);
   }
 
   addReader(reader: Reader): void {
-    this.readers.push(reader);
+    this._readers.push(reader);
   }
 
   getAvailableCopies(): Copy[] {
-    return this.copies.filter((copy) => copy.isCopyAvailable());
+    return this._copies.filter((copy) => copy.isCopyAvailable());
   }
 
   searchBookByAuthor(authorName: string): AbstractBook[] {
-    return this.books.filter((book) => book.author.name === authorName);
+    return this._books.filter((book) => book.author.name === authorName);
+  }
+
+  get books(): AbstractBook[] {
+    return this._books;
+  }
+
+  get authors(): Author[] {
+    return this._authors;
+  }
+
+  get readers(): Reader[] {
+    return this._readers;
+  }
+
+  get copies(): Copy[] {
+    return this._copies;
   }
 }

@@ -3,21 +3,21 @@ import { Copy } from "../models/Copy";
 
 export class BorrowService {
   borrow(reader: Reader, copy: Copy): boolean {
-    if (!copy.isAvailable) {
+    if (!copy.checkout) {
       console.log("Ця копія вже позичена");
       return false;
     }
 
-    copy.isAvailable = false;
+    copy.checkout = false;
     reader.copies.push(copy);
     console.log(`Читач отримав копію книги: ${copy.book.title}`);
     return true;
   }
 
   returnBook(reader: Reader, copy: Copy): void {
-    if (!copy.isAvailable) {
+    if (!copy.checkout) {
       reader.copies = reader.copies.filter((c) => c !== copy);
-      copy.isAvailable = true;
+      copy.checkout = true;
       console.log(`Книгу "${copy.book.title}" повернуто до бібліотеки.`);
     } else {
       console.log(`Книга "${copy.book.title}" і так знаходиться у бібліотеці.`);

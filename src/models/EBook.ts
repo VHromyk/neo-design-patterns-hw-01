@@ -2,20 +2,32 @@ import { AbstractBook } from "./AbstractBook";
 import { Author } from "./Author";
 
 export class EBook extends AbstractBook {
-  title: string;
-  year: number;
-  author: Author;
-  url: string;
+  private _title: string;
+  private _year: number;
+  private _author: Author;
+  private _url: string;
 
   constructor(title: string, year: number, author: Author, url: string) {
     super();
-    this.title = title;
-    this.year = year;
-    this.author = author;
-    this.url = url;
+    this._title = title;
+    this._year = year;
+    this._author = author;
+    this._url = url;
+  }
+
+  get title(): string {
+    return this._title;
+  }
+
+  get year(): number {
+    return this._year;
+  }
+
+  get author(): Author {
+    return this._author;
   }
 
   getDescription(): string {
-    return `Електроний екземпляр книги ${this.title} (${this.year})`;
+    return `Електроний екземпляр книги ${this._title} (${this._year})`;
   }
 }

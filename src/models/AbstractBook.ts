@@ -1,9 +1,9 @@
 import { Author } from "./Author";
 
 export abstract class AbstractBook {
-  abstract title: string;
-  abstract year: number;
-  abstract author: Author;
+  abstract get title(): string;
+  abstract get year(): number;
+  abstract get author(): Author;
 
   abstract getDescription(): string;
 }
